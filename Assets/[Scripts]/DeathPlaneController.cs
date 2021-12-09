@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class DeathPlaneController : MonoBehaviour
 {
-    public Transform playerSpawnPoint;
+    private GameController gameController;
+
+    private void Start()
+    {
+        gameController = GameObject.FindObjectOfType<GameController>();
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.transform.position = playerSpawnPoint.position;
+            other.transform.position = gameController.playerSpawnPoint.position;
         }
         else
         {
